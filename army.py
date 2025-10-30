@@ -25,6 +25,22 @@ class Army:
         self.coins -= cost
         return f"Succesfully trained: {self.troops[index]}"
 
+    def promote_troop(self, index: int) -> str:
+        if index < 0 or index >= len(self.troops):
+            raise IndexError("Invalid troop index")
+
+        try:
+            cost = self.troops[index].training_cost()
+
+            if (self.coins < cost):
+                return f"Not enough coins to train: {self.troops[index]}"
+            
+            promoted = self.troops[index].promote()
+            self.troops[index] = promoted
+            return f"Troop promoted to {promoted}"
+        except Exception as e:
+            return str(e)
+    
     def __str__(self):
         return f"{self.name}"
 
