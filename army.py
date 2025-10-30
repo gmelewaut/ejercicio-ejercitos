@@ -11,10 +11,24 @@ class Army:
         """Calculate total points of all troops."""
         return sum(t.points for t in self.troops)
 
+    def train_troop(self, index: int) -> str:
+        """Train a single troop at position `index`."""
+        if index < 0 or index >= len(self.troops):
+            raise IndexError("Invalid troop index")
+        
+        cost = self.troops[index].training_cost()
+
+        if (self.coins < cost):
+            return f"Not enough coins to train: {self.troops[index]}"
+
+        self.troops[index].train()
+        self.coins -= cost
+        return f"Succesfully trained: {self.troops[index]}"
+
     def __str__(self):
         return f"{self.name}"
 
-def battle(army1: Army, army2: Army):
+def battle(army1: Army, army2: Army) -> str:
     points1 = army1.total_points()
     points2 = army2.total_points()
 

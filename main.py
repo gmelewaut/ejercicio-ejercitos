@@ -3,8 +3,15 @@ from army import battle
 
 if __name__ == "__main__":
     army1 = Civilization.create_army("Chinese", "Red Dragons")
-    army2 = Civilization.create_army("Chinese", "Lionhearts")
+    army2 = Civilization.create_army("English", "Lionhearts")
     army3 = Civilization.create_army("Byzantine", "Imperial Guard")
+
+    print(army1.train_troop(0))
+    print(army1.train_troop(0))
+    print(army1.train_troop(0))
+    print(army1.train_troop(3))
+    print(army1.train_troop(27))
+
 
     print(battle(army1, army2))
     print(battle(army1, army3))
